@@ -1,10 +1,12 @@
+use crate::utils::constants::EMPTY_LINE;
+
 fn parse_elf_calories(raw_calories: &str) -> Vec<u64> {
     raw_calories.lines().map(|l| l.parse::<u64>().unwrap()).collect()
 }
 
 fn get_elv_calories(input: &String) -> Vec<u64> {
     input
-        .split("\n\n")
+        .split(EMPTY_LINE)
         .map(parse_elf_calories)
         .map(|elf_calories| elf_calories.iter().sum())
         .collect()
