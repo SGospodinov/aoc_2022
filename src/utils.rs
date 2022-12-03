@@ -2,6 +2,7 @@ use std::fs::read_to_string;
 
 pub mod constants {
     pub const EMPTY_LINE: &str = "\n\n";
+    pub const SPACE: &str = " ";
 }
 
 pub fn load_day_input(day: u8) -> String {
