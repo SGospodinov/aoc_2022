@@ -1,3 +1,5 @@
+#![feature(iter_next_chunk)]
+
 mod utils;
 mod day_1;
 mod day_2;

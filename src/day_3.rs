@@ -25,8 +25,26 @@ pub fn part_1(input: &String) -> u64 {
     input.trim().lines().map(get_wrong_item_priority).sum()
 }
 
+fn get_all_items(rucksack: &str) -> HashSet<char> {
+    rucksack.chars().collect::<HashSet<char>>()
+}
+
 pub fn part_2(input: &String) -> u64 {
-    0
+    let mut result = 0;
+    let mut lines = input.trim().lines();
+
+    while let Ok(group) = lines.next_chunk::<3>() {
+        let one   = get_all_items(group[0]);
+        let two   = get_all_items(group[1]);
+        let three = get_all_items(group[2]);
+
+        let badge: HashSet<_> = one.intersection(&two).cloned().collect();
+        let badge = badge.intersection(&three).nth(0).unwrap();
+
+        result += get_priority(*badge);
+    }
+
+    result
 }
 
 #[cfg(test)]
@@ -46,6 +64,6 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
     #[test]
     fn part_2() {
-        assert_eq!(super::part_2(&String::from(TEST_INPUT)), 1);
+        assert_eq!(super::part_2(&String::from(TEST_INPUT)), 70);
     }
 }
