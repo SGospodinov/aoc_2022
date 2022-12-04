@@ -22,12 +22,7 @@ fn fully_contains((left, right): &(HashSet<u32>, HashSet<u32>)) -> bool {
 
 
 pub fn part_1(input: &String) -> u64 {
-        input.trim()
-        .lines()
-        .map(parse_line)
-        .filter(fully_contains)
-        .collect::<Vec<_>>()
-        .len() as u64
+    input.trim().lines().map(parse_line).filter(fully_contains).count() as u64
 }
 
 fn overlaps((left, right): &(HashSet<u32>, HashSet<u32>)) -> bool {
@@ -35,12 +30,7 @@ fn overlaps((left, right): &(HashSet<u32>, HashSet<u32>)) -> bool {
 }
 
 pub fn part_2(input: &String) -> u64 {
-    input.trim()
-        .lines()
-        .map(parse_line)
-        .filter(overlaps)
-        .collect::<Vec<_>>()
-        .len() as u64
+    input.trim().lines().map(parse_line).filter(overlaps).count() as u64
 }
 
 #[cfg(test)]
